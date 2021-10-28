@@ -46,11 +46,11 @@ class Level(pygame.sprite.Sprite):
         self.last = pygame.time.get_ticks()
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface(
-            (50, random.randrange(100, HEIGHT - (HEIGHT / 2))))
+            (50, random.randrange(100, int(HEIGHT - (HEIGHT / 3)))))
         self.image.fill((0, 255, 255))
         self.rect = self.image.get_rect()
         self.rect.top = 0
-        self.rect.x = random.randrange(WIDTH, WIDTH + (WIDTH / 4))
+        self.rect.x = random.randrange(WIDTH, int(WIDTH + (WIDTH / 4)))
         self.flag = True
 
     def spawn(self):
@@ -60,13 +60,18 @@ class Level(pygame.sprite.Sprite):
             self.last = now
             level = Level()
             all_sprites.add(level)
+            return False
+        else:
+            return True
 
     def update(self):
         if player.player_speed <= 0:
             self.rect.x -= 2.2
         if self.flag is True:
-            self.spawn()
-            self.flag = False
+            self.flag = self.spawn()
+        if self.rect.right < 0:
+            self.kill()
+            print("super dead sprite!")
 
 
 all_sprites = pygame.sprite.Group()
