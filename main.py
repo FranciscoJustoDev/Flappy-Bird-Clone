@@ -50,7 +50,14 @@ class Level(pygame.sprite.Sprite):
         self.image.fill((0, 255, 255))
         self.rect = self.image.get_rect()
         self.rect.top = 0
-        self.rect.x = random.randrange(WIDTH, int(WIDTH + (WIDTH / 4)))
+        self.x = random.randrange(WIDTH, int(WIDTH + (WIDTH / 4)))
+        self.rect.x = self.x
+        self.image_dwn = pygame.Surface((50, HEIGHT))
+        self.image_dwn.fill((255, 0, 0))
+        self.rect_dwn = self.image_dwn.get_rect()
+        self.rect_dwn.top = random.randrange(
+            int(HEIGHT / 2), int(HEIGHT - (HEIGHT / 8)))
+        self.rect_dwn.x = self.x
         self.flag = True
 
     def spawn(self):
@@ -67,6 +74,7 @@ class Level(pygame.sprite.Sprite):
     def update(self):
         if player.player_speed <= 0:
             self.rect.x -= 2.2
+            self.rect_dwn.x -= 2.2
         if self.flag is True:
             self.flag = self.spawn()
         if self.rect.right < 0:
