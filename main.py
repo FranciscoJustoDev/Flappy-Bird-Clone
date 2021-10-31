@@ -52,16 +52,19 @@ class Level_Manager(object):
     def __init__(self):
         self.flag = True
 
+    def spawn(self, y_size):
+        obstacle1 = Obstacle(y_size, 0)
+        obstacle_sprites.add(obstacle1)
+        all_sprites.add(obstacle1)
+        obstacle2 = Obstacle(HEIGHT, y_size + OBSTACLE_GAP)
+        obstacle_sprites.add(obstacle2)
+        all_sprites.add(obstacle2)
+
     def update(self):
         now = pygame.time.get_ticks()
         self.y_size = random.randrange(100, int(HEIGHT - (HEIGHT / 3)))
         if self.flag is True:
-            obstacle1 = Obstacle(self.y_size, 0)
-            obstacle_sprites.add(obstacle1)
-            all_sprites.add(obstacle1)
-            obstacle2 = Obstacle(HEIGHT, self.y_size + OBSTACLE_GAP)
-            obstacle_sprites.add(obstacle2)
-            all_sprites.add(obstacle2)
+            self.spawn(self.y_size)
             self.last = pygame.time.get_ticks()
             self.flag = False
         if now - self.last >= 3000:
