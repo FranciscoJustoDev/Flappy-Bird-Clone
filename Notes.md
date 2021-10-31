@@ -1,19 +1,36 @@
 
-# FlappyBird
+# **FlappyBirdClone** - General Guidelines
 
 This is a game about a flying bird or weird creature!
 
-## To Do:
+> ## ***To Do:***
+> 
+> - randomly generate `OBSTACLE_GAP` according to
+> player size and jump_force
+> - add jump animation when player dies and wait
+> for it to finish before reset.
+> - adjust gravity, jump force and obstacle
+> speed values!.  
+> - player jump_force <= obstacle gap
+> **minimum** size! (so that player can move
+> pass the obstacle!)  
 
-add collision detection between player and obstacles.  
-adjust gravity, jump force and pbstcle speed values!.  
-add wait time before applying gravity on player at startup of game!  
+> ## ***To Fix:***
+>
+> - *Obstacle stretching* when reaching left
+> side of screen.  
+> - on `quit()` shell errors like: video sys no
+> initialized.  
 
-## To Fix:
-
-Obstacle stretching when reaching left side of screen.  
-
-### ADDED:
-obstacles now appear in both ends of screen!  
-delay between jumps  
-separate groups for player and obstacles  
+> ### ***ADDED:***
+>
+> - game now resets when player collides with
+> obstacle or goes out of bounds.
+> - add collision detection between player and
+> obstacles. 
+> - add wait time before applying gravity on
+> player at startup of game!  
+> - obstacles now appear in both ends of
+> screen!  
+> - delay between jumps  
+> - separate groups for player and obstacles  
