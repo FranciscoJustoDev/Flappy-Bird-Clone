@@ -11,7 +11,7 @@ This is a game about a flying bird or weird creature!
 > for it to finish before reset.
 > - adjust gravity, jump force and obstacle
 > speed values!.  
-> - player jump_force <= obstacle gap
+> - player `jump_force` <= `obstacle_gap`
 > **minimum** size! (so that player can move
 > pass the obstacle!)  
 
