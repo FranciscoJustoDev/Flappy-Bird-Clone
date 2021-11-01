@@ -5,10 +5,10 @@ This is a game about a flying bird or weird creature!
 
 > ## ***To Do:***
 > 
+> - add Sfx and music!  
+> - add **Main Menu** and **Game Over Menu**.  
 > - randomly generate `OBSTACLE_GAP` according to
-> player size and jump_force
-> - add jump animation when player dies and wait
-> for it to finish before reset.
+> player size and jump_force.  
 > - adjust gravity, jump force and obstacle
 > speed values!.  
 > - player `jump_force` <= `obstacle_gap`
@@ -29,6 +29,8 @@ This is a game about a flying bird or weird creature!
 
 > ### ***ADDED:***
 >
+> - add jump animation when player dies and wait
+> for it to finish before reset.  
 > - game now resets when player collides with
 > obstacle or goes out of bounds.
 > - add collision detection between player and
