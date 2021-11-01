@@ -14,7 +14,7 @@ This is a game about a flying bird or weird creature!
 > - player `jump_force` <= `obstacle_gap`
 > **minimum** size! (so that player can move
 > pass the obstacle!)  
-> - implement art for the player, obstacles and
+> - implement art for obstacles and
 > background.  
 > - add score counter based on number of
 > obstacles cleared and highscore from
@@ -22,6 +22,8 @@ This is a game about a flying bird or weird creature!
 
 > ## ***To Fix:***
 >
+> - player collider is rect when player image
+> is a circle.  
 > - *Obstacle stretching* when reaching left
 > side of screen.  
 > - on `quit()` shell errors like: video sys no
@@ -29,6 +31,8 @@ This is a game about a flying bird or weird creature!
 
 > ### ***ADDED:***
 >
+> - added art for player when *idle*, jumping
+> and dead.  
 > - add jump animation when player dies and wait
 > for it to finish before reset.  
 > - game now resets when player collides with

@@ -1,6 +1,9 @@
 import pygame
 import random
-import os
+from os import path
+
+assets_dir = path.join(path.dirname(__file__), "assets/")
+textures_dir = path.join(path.dirname(assets_dir), "textures")
 
 WIDTH = 800
 HEIGHT = 400
@@ -25,8 +28,8 @@ clock = pygame.time.Clock()
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface(STD_SIZE)
-        self.image.fill(WHITE)
+        self.image = player_idle
+        self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
         self.direction = pygame.math.Vector2(0, 0)
@@ -65,6 +68,7 @@ class Level_Manager(object):
     
     def game_over(self):
         player.alive = False
+        player.image = player_dead
         player.direction.y = 0
         player.direction.y += JUMP_FORCE + DEATH_JUMP
         
@@ -85,6 +89,7 @@ class Level_Manager(object):
             player.player_speed = GAME_SPEED
             player.direction.y = 0
             obstacle_sprites.empty()
+            player.image = player_idle
             player.alive = True
 
     def update(self):
@@ -98,6 +103,11 @@ class Level_Manager(object):
         if now - self.last >= 3000:
             self.last = now
             self.flag = True
+        if player.alive:
+            if player.direction.y < JUMP_FORCE / 4:
+                player.image = player_jump
+            else:
+                player.image = player_idle
 
 class Obstacle(pygame.sprite.Sprite):
     def __init__(self, size, y):
@@ -117,6 +127,10 @@ class Obstacle(pygame.sprite.Sprite):
             self.kill()
             print("super dead sprite -top!")   
 
+
+player_idle = pygame.image.load(path.join(textures_dir, "player_idle.png")).convert()
+player_jump = pygame.image.load(path.join(textures_dir, "player_jump.png")).convert()
+player_dead = pygame.image.load(path.join(textures_dir, "player_dead.png")).convert()
 
 player_sprite = pygame.sprite.Group()
 obstacle_sprites = pygame.sprite.Group()
