@@ -8,6 +8,7 @@ FPS = 30
 STD_SIZE = (64, 64)
 JUMP_FORCE = -10
 JUMP_DELAY = 3
+DEATH_JUMP = -5
 OBSTACLE_GAP = STD_SIZE[0] + 100
 GAME_SPEED = 2.2
 BLACK = (0, 0, 0)
@@ -31,6 +32,7 @@ class Player(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2(0, 0)
         self.player_speed = GAME_SPEED
         self.gravity = 0.8
+        self.alive = True
 
     def player_movement(self):
         # initial movement
@@ -39,7 +41,7 @@ class Player(pygame.sprite.Sprite):
             self.player_speed = 0
         
     def jump(self):
-        if pygame.key.get_pressed()[pygame.K_SPACE]:
+        if pygame.key.get_pressed()[pygame.K_SPACE] and self.alive:
             self.direction.y = JUMP_FORCE
         
     def update(self):
@@ -62,22 +64,28 @@ class Level_Manager(object):
         obstacle_sprites.add(obstacle2)
     
     def game_over(self):
-        player.rect.center = (WIDTH / 2, HEIGHT / 2)
-        player.player_speed = GAME_SPEED
+        player.alive = False
         player.direction.y = 0
-        obstacle_sprites.empty()
-
+        player.direction.y += JUMP_FORCE + DEATH_JUMP
+        
 
     def collision(self):
-        if pygame.sprite.groupcollide(player_sprite, obstacle_sprites, False, False):
-            self.game_over()
-            print("Collision! - Dead!")
-        if player.rect.top >= HEIGHT:
-            self.game_over()
-            print("Out of bounds! - Dead!")
-        if player.rect.bottom <= 0:
-            self.game_over()
-            print("Out of bounds! - Dead!")
+        if player.alive:
+            if pygame.sprite.groupcollide(player_sprite, obstacle_sprites, False, False):
+                self.game_over()
+                print("Collision! - Dead!")
+            if player.rect.top >= HEIGHT:
+                self.game_over()
+                print("Out of bounds! - Dead!")
+            if player.rect.bottom <= 0:
+                self.game_over()
+                print("Out of bounds! - Dead!")
+        if player.rect.top >= HEIGHT + STD_SIZE[1] and player.alive == False:
+            player.rect.center = (WIDTH / 2, HEIGHT / 2)
+            player.player_speed = GAME_SPEED
+            player.direction.y = 0
+            obstacle_sprites.empty()
+            player.alive = True
 
     def update(self):
         self.collision()

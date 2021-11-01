@@ -14,6 +14,11 @@ This is a game about a flying bird or weird creature!
 > - player `jump_force` <= `obstacle_gap`
 > **minimum** size! (so that player can move
 > pass the obstacle!)  
+> - implement art for the player, obstacles and
+> background.  
+> - add score counter based on number of
+> obstacles cleared and highscore from
+> playing session.  
 
 > ## ***To Fix:***
 >
