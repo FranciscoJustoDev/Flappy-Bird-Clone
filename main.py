@@ -4,6 +4,7 @@ from os import path
 
 assets_dir = path.join(path.dirname(__file__), "assets/")
 textures_dir = path.join(path.dirname(assets_dir), "textures")
+audio_dir = path.join(path.dirname(assets_dir), "audio")
 
 WIDTH = 800
 HEIGHT = 400
@@ -46,6 +47,7 @@ class Player(pygame.sprite.Sprite):
     def jump(self):
         if pygame.key.get_pressed()[pygame.K_SPACE] and self.alive:
             self.direction.y = JUMP_FORCE
+            sound_jump.play()
         
     def update(self):
         if self.player_speed == 0:
@@ -71,6 +73,7 @@ class Level_Manager(object):
         player.image = player_dead
         player.direction.y = 0
         player.direction.y += JUMP_FORCE + DEATH_JUMP
+        sound_die.play()
         
 
     def collision(self):
@@ -131,6 +134,12 @@ class Obstacle(pygame.sprite.Sprite):
 player_idle = pygame.image.load(path.join(textures_dir, "player_idle.png")).convert()
 player_jump = pygame.image.load(path.join(textures_dir, "player_jump.png")).convert()
 player_dead = pygame.image.load(path.join(textures_dir, "player_dead.png")).convert()
+
+sound_jump = pygame.mixer.Sound(path.join(audio_dir, "jump.wav"))
+sound_die = pygame.mixer.Sound(path.join(audio_dir, "die.wav"))
+sound_highscore = pygame.mixer.Sound(path.join(audio_dir, "highscore-surpass.wav"))
+sound_curs_move = pygame.mixer.Sound(path.join(audio_dir, "cursor-move.wav"))
+sound_curs_select = pygame.mixer.Sound(path.join(audio_dir, "cursor-select.wav"))
 
 player_sprite = pygame.sprite.Group()
 obstacle_sprites = pygame.sprite.Group()
