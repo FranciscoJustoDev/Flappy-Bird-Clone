@@ -6,7 +6,6 @@ This is a game about a flying bird or weird creature!
 > ## ***To Do:***
 > 
 > - add Sfx and music!  
-> - add **Main Menu** and **Game Over Menu**.  
 > - randomly generate `OBSTACLE_GAP` according to
 > player size and jump_force.  
 > - adjust gravity, jump force and obstacle
@@ -16,9 +15,6 @@ This is a game about a flying bird or weird creature!
 > pass the obstacle!)  
 > - implement art for obstacles and
 > background.  
-> - add score counter based on number of
-> obstacles cleared and highscore from
-> playing session.  
 
 > ## ***To Fix:***
 >
@@ -31,6 +27,10 @@ This is a game about a flying bird or weird creature!
 
 > ### ***ADDED:***
 >
+> - add score counter based on number of
+> obstacles cleared and highscore from
+> playing session.  
+> - add **Main Menu**.  
 > - added art for player when *idle*, jumping
 > and dead.  
 > - add jump animation when player dies and wait
